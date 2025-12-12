@@ -1,0 +1,25 @@
+{
+  "name": "introtobackend",
+  "version": "1.0.0",
+  "description": "an introdution to backend project (node.js)",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/psychokot11/intro-to-backend.git"
+  },
+  "author": "psychokot11",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/psychokot11/intro-to-backend/issues"
+  },
+  "homepage": "https://github.com/psychokot11/intro-to-backend#readme",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "mongoose": "^9.0.1"
+  }
+}
