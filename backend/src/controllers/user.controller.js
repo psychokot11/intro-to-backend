@@ -43,10 +43,19 @@ const loginUser = async (req, res) => {
             message: "User not found." 
         });
 
-        if (user.password !== password) return;
-    } catch (error) {
+        const isMatch = await user.comparePassword(password);
 
+        if (!isMatch) return res.status(401).json({ 
+            message: "Invalid credentials." 
+        });
+
+        return res.status(200).json({ 
+            message: "Login successful.",
+            user: { _id: user._id, email: user.email, username: user.username } 
+        });
+    } catch (error) {
+        res.status(500).json({ message: "Server error.", error: error.message });
     }
 };
 
-export { registerUser };
+export { registerUser, loginUser };
