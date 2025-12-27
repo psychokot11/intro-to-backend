@@ -19,4 +19,37 @@ const createPost = async (req, res) => {
     }
 };
 
-export { createPost };
+const getPosts = async (req, res) => {
+    try {
+        const posts = await Post.find();
+        res.status(200).json({
+            message: "Posts retrieved successfully",
+            posts
+        });
+    } catch (error) {
+        res.status(500).json({ message: "Server Error", error: error.message });
+    }
+};
+
+const updatePost = async (req, res) => {
+    try {
+        if (Object.keys(req.body).length === 0) {
+            return res.status(400).json({ message: "No data provided for update" });
+        }
+
+        const post = await Post.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
+        if (!post) {
+            return res.status(404).json({ message: "Post not found" });
+        }
+
+        res.status(200).json({
+            message: "Post updated successfully",
+            post
+        });
+    } catch (error) {
+        res.status(500).json({ message: "Server Error", error: error.message });
+    }
+};
+
+export { createPost, getPosts, updatePost };
